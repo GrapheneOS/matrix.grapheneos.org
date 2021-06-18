@@ -20,7 +20,7 @@
         "feature_new_spinner": false
     },
     "default_federate": true,
-    "default_theme": "light",
+    "default_theme": "dark",
     "roomDirectory": {
         "servers": [
             "grapheneos.org",
