@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -o errexit -o nounset -o pipefail
+shopt -s dotglob extglob globstar
+
+export PATH="$PWD/node_modules/.bin:$PATH"
+
+rm -rf static_tmp
+cp -a /usr/share/webapps/element static_tmp
+cp --remove-destination webapps/element/config.json static_tmp/config.json
+
+cp nginx/nginx.conf nginx.conf.tmp
+
+find static_tmp -regex '.+\.\(css\|html\|ico\|js\|json\|map\|pdf\|svg\|txt\|webmanifest\|xml\|wasm\)' \
+    -exec zopfli {} \; -exec touch -r {} {}.gz \; \
+    -exec brotli -k {} \;
