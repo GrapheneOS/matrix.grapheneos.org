@@ -11,6 +11,6 @@ cp --remove-destination webapps/element/config.json static_tmp/config.json
 
 cp nginx/nginx.conf nginx.conf.tmp
 
-find static_tmp -regex '.+\.\(css\|html\|ico\|js\|json\|map\|pdf\|svg\|txt\|webmanifest\|xml\|wasm\)' \
+find static_tmp -regex '.+\.\(css\|html\|ico\|js\|json\|map\|svg\|txt\|webmanifest\|xml\|wasm\)' \
     -exec zopfli {} \; -exec touch -r {} {}.gz \; \
     -exec brotli -k {} \;
