@@ -2,7 +2,7 @@
 
 set -o errexit -o nounset -o pipefail
 
-./process_static
+./process-static
 
 remote=root@element.grapheneos.org
 active=$(ssh $remote readlink /srv/element.grapheneos.org)
