@@ -12,4 +12,4 @@ cp --remove-destination webapps/element/config.json static_tmp/config.json
 cp nginx/nginx.conf nginx.conf.tmp
 
 find static_tmp -regex '.+\.\(css\|html\|ico\|js\|json\|map\|svg\|txt\|webmanifest\|xml\|wasm\)' |
-    parallel "brotli -k {}; zopfli {} && touch -r {} {}.gz"
+    parallel "brotli -k {}; zopfli {}"
