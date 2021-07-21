@@ -11,5 +11,10 @@ cp --remove-destination webapps/element/config.json static_tmp/config.json
 
 cp nginx/nginx.conf nginx.conf.tmp
 
+brotli_k() {
+    brotli -k "$@"
+}
+export -f brotli_k
+
 find static_tmp -regex '.+\.\(css\|html\|ico\|js\|json\|map\|svg\|txt\|webmanifest\|xml\|wasm\)' |
-    parallel "brotli -k {}; zopfli {}"
+    parallel -q ::: brotli_k zopfli :::: -
