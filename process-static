@@ -5,9 +5,9 @@ shopt -s dotglob extglob globstar
 
 export PATH="$PWD/node_modules/.bin:$PATH"
 
-rm -rf static_tmp
-cp -a /usr/share/webapps/element static_tmp
-cp --remove-destination webapps/element/config.json static_tmp/config.json
+rm -rf static-tmp
+cp -a /usr/share/webapps/element static-tmp
+cp --remove-destination webapps/element/config.json static-tmp/config.json
 
 cp nginx/nginx.conf nginx.conf.tmp
 
@@ -22,5 +22,5 @@ zopfli_preserve_time() {
 }
 export -f zopfli_preserve_time
 
-find static_tmp -regex '.+\.\(css\|html\|ico\|js\|json\|map\|svg\|txt\|webmanifest\|xml\|wasm\)' |
+find static-tmp -regex '.+\.\(css\|html\|ico\|js\|json\|map\|svg\|txt\|webmanifest\|xml\|wasm\)' |
     parallel -q ::: brotli_k zopfli_preserve_time :::: -
