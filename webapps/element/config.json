@@ -14,7 +14,7 @@
     "integrations_rest_url": "",
     "integrations_widgets_urls": [],
     "bug_report_endpoint_url": "https://element.io/bugreports/submit",
-    "defaultCountryCode": "GB",
+    "defaultCountryCode": "CA",
     "showLabsSettings": false,
     "features": { },
     "default_federate": true,
