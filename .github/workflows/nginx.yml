@@ -8,9 +8,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - run: sudo apt-get update
-    - run: sudo apt-get -y install python3-pip python3-setuptools
-    - run: pip3 install wheel
-    - run: pip3 install gixy
-    - run: ~/.local/bin/gixy nginx/nginx.conf
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+        cache: 'pip'
+    - run: pip install -r requirements.txt
+    - run: gixy nginx/nginx.conf
