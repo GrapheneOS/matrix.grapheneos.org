@@ -12,6 +12,9 @@ rm -rf static-tmp
 cp -a /usr/share/webapps/element static-tmp
 cp --remove-destination webapps/element/config.json static-tmp/config.json
 
+# work around https://bugs.archlinux.org/task/72968
+find static-tmp -name '*.js' -exec sed -i 's/!!UNSET!!/1.9.6/' {} +
+
 brotli_k() {
     brotli -k "$@"
 }
