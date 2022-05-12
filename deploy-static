@@ -30,6 +30,7 @@ ssh $remote "ln -snf $target /srv/element.grapheneos.org && sync /srv/element.gr
 
 sed -i "s|/srv/element.grapheneos.org|$target|" nginx-tmp/nginx.conf
 rsync -rpcv --fsync --chmod=D755,F644 --delete nginx-tmp/nginx.conf $remote:/etc/nginx/nginx.conf
+rsync -rpcv --fsync --chmod=D755,F644 --delete nginx-tmp/mime.types $remote:/etc/nginx/mime.types
 ssh $remote nginx -s reload
 
 echo
