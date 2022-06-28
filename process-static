@@ -20,6 +20,8 @@ export PATH="$PWD/node_modules/.bin:$PATH"
 rm -rf nginx-tmp
 cp -a nginx nginx-tmp
 
+gixy nginx-tmp/nginx.conf
+
 rm -rf static-tmp
 cp -a /usr/share/webapps/element static-tmp
 cp --remove-destination webapps/element/config.json static-tmp/config.json
