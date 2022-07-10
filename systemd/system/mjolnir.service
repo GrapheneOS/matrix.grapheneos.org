@@ -4,6 +4,7 @@ After=synapse.service
 
 [Service]
 CapabilityBoundingSet=
+Environment=NODE_ENV=production
 ExecStart=/usr/bin/node /opt/mjolnir/lib/index.js
 IPAddressDeny=any
 IPAddressAllow=localhost
