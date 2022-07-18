@@ -17,8 +17,6 @@ if ! flock -n $fd; then
     exit 1
 fi
 
-export PATH="$PWD/node_modules/.bin:$PATH"
-
 rm -rf nginx-tmp
 cp -a nginx nginx-tmp
 
