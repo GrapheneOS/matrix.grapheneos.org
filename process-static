@@ -3,6 +3,8 @@
 set -o errexit -o nounset -o pipefail
 shopt -s dotglob extglob globstar
 
+source venv/bin/activate
+
 if [[ $# -eq 1 ]]; then
     fd=$1
 else
