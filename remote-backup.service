@@ -1,0 +1,8 @@
+[Unit]
+Description=Perform remote backup
+
+[Service]
+ExecStart=/usr/local/bin/remote-backup
+Type=oneshot
+User=root
+WorkingDirectory=/root

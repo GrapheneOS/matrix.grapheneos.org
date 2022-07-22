@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -o errexit -o nounset -o pipefail
+
+timestamp=$(date -u +%Y-%m-%dT%H:%m:%SZ)
+rm -rf remote-backup
+mkdir remote-backup
+
+mkdir remote-backup/$timestamp
+pg_dumpall -U postgres > remote-backup/$timestamp/all_databases.sql
+cp -a /etc/synapse remote-backup/$timestamp/synapse
+tar c remote-backup/$timestamp | zstd -9 | age -r $(cat backup-public-key.txt) -o remote-backup/$timestamp.tar.zst.age
+sshpass -f cloud-archive-password.txt rsync -v ./remote-backup/$timestamp.tar.zst.age pca@gateways.storage.gra.cloud.ovh.net:backup/

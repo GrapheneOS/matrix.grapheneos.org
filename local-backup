@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -o errexit -o nounset -o pipefail
+
+remote=root@matrix.grapheneos.org
+
+timestamp=$(date -u +%Y-%m-%dT%H:%m:%SZ)
+ssh $remote "rm -rf local-backup"
+ssh $remote "mkdir local-backup"
+
+ssh $remote "mkdir local-backup/$timestamp"
+ssh $remote "pg_dumpall -U postgres > local-backup/$timestamp/all_databases.sql"
+ssh $remote "cp -a /etc/synapse local-backup/$timestamp/synapse"
+ssh $remote "tar c -C local-backup $timestamp | zstd -9 | age -r \$(cat backup-public-key.txt) -o local-backup/$timestamp.tar.zst.age"
+rsync -v $remote:./local-backup/$timestamp.tar.zst.age backup/
