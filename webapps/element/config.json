@@ -28,7 +28,6 @@
             "matrix.org"
         ]
     },
-    "piwik": false,
     "enable_presence_by_hs_url": {
         "https://matrix.grapheneos.org": false
     },
@@ -37,5 +36,9 @@
     },
     "jitsi": {
         "preferred_domain": "meet.element.io"
-    }
+    },
+    "element_call": {
+        "url": "https://call.element.io"
+    },
+    "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx"
 }
