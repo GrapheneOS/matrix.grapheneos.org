@@ -38,4 +38,5 @@ echo active is now $target
 rsync -ptcv --chmod=755 --fsync --preallocate remote-backup $remote:/usr/local/bin/
 rsync -ptcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.timer $remote:/etc/systemd/system/remote-backup.timer
 rsync -ptcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.service $remote:/etc/systemd/system/remote-backup.service
+rsync -ptcv --chmod=644 --fsync --preallocate systemd/system/mjolnir.service $remote:/etc/systemd/system/mjolnir.service
 rsync -ptcv --chmod=644 --fsync --preallocate backup-public-key.txt cloud-archive-password.txt $remote:
