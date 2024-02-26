@@ -41,3 +41,4 @@ rsync -ptcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.servi
 rsync -ptcv --chmod=644 --fsync --preallocate systemd/system/mjolnir.service $remote:/etc/systemd/system/mjolnir.service
 rsync -rptcv --chmod=D755,F644 --delete --fsync --preallocate systemd/system/matterbridge.service.d $remote:/etc/systemd/system/
 rsync -ptcv --chmod=644 --fsync --preallocate backup-public-key.txt cloud-archive-password.txt $remote:
+rsync -ptcv --chmod=600 --chown postgres:postgres --fsync --preallocate postgres/data/{pg_hba,pg_ident,postgresql}.conf $remote:/var/lib/postgres/data/
