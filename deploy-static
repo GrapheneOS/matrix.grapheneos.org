@@ -29,16 +29,16 @@ rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-tmp/ $remote
 ssh $remote "ln -snf $target /srv/element.grapheneos.org && sync /srv/element.grapheneos.org"
 
 echo "root $target;" > nginx-tmp/root_element.grapheneos.org.conf
-rsync -rptcv --chmod=D755,F644 --delete --fsync --preallocate nginx-tmp/{nginx.conf,mime.types,root_element.grapheneos.org.conf,snippets} $remote:/etc/nginx/
+rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate nginx-tmp/{nginx.conf,mime.types,root_element.grapheneos.org.conf,snippets} $remote:/etc/nginx/
 ssh $remote nginx -s reload
 
 echo
 echo active is now $target
 
-rsync -ptcv --chmod=755 --fsync --preallocate remote-backup $remote:/usr/local/bin/
-rsync -ptcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.timer $remote:/etc/systemd/system/remote-backup.timer
-rsync -ptcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.service $remote:/etc/systemd/system/remote-backup.service
-rsync -ptcv --chmod=644 --fsync --preallocate systemd/system/mjolnir.service $remote:/etc/systemd/system/mjolnir.service
-rsync -rptcv --chmod=D755,F644 --delete --fsync --preallocate systemd/system/matterbridge.service.d $remote:/etc/systemd/system/
-rsync -ptcv --chmod=644 --fsync --preallocate backup-public-key.txt cloud-archive-password.txt $remote:
-rsync -ptcv --chmod=600 --chown postgres:postgres --fsync --preallocate postgres/data/{pg_hba,pg_ident,postgresql}.conf $remote:/var/lib/postgres/data/
+rsync -pcv --chmod=755 --fsync --preallocate remote-backup $remote:/usr/local/bin/
+rsync -pcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.timer $remote:/etc/systemd/system/remote-backup.timer
+rsync -pcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.service $remote:/etc/systemd/system/remote-backup.service
+rsync -pcv --chmod=644 --fsync --preallocate systemd/system/mjolnir.service $remote:/etc/systemd/system/mjolnir.service
+rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate systemd/system/matterbridge.service.d $remote:/etc/systemd/system/
+rsync -pcv --chmod=644 --fsync --preallocate backup-public-key.txt cloud-archive-password.txt $remote:
+rsync -pcv --chmod=600 --chown postgres:postgres --fsync --preallocate postgres/data/{pg_hba,pg_ident,postgresql}.conf $remote:/var/lib/postgres/data/
