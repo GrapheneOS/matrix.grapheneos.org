@@ -2,6 +2,8 @@
 
 set -o errexit -o nounset -o pipefail
 
+shopt -s extglob
+
 touch lock
 exec {fd}< lock
 if ! flock -n $fd; then
@@ -12,6 +14,14 @@ fi
 ./process-static $fd
 
 remote=root@matrix.grapheneos.org
+
+# use last modified timestamps from matrix.grapheneos.org
+rsync -rptcv --chmod=D755,F644 --delete --fsync --preallocate $remote:/srv/element.grapheneos.org/ static-deploy
+rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-tmp/ static-deploy
+for f in static-deploy/**.*(br|gz); do
+    touch -r "${f%.*}" "$f"
+done
+
 active=$(ssh $remote readlink /srv/element.grapheneos.org)
 
 if [[ $active = /srv/element.grapheneos.org_a ]]; then
@@ -25,7 +35,7 @@ echo target is $target
 echo
 
 ssh $remote "rm -rf $target && cp -a $active $target"
-rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-tmp/ $remote:$target
+rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-deploy/ $remote:$target
 ssh $remote "ln -snf $target /srv/element.grapheneos.org && sync /srv/element.grapheneos.org"
 
 echo "root $target;" > nginx-tmp/root_element.grapheneos.org.conf
