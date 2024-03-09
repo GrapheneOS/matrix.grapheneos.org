@@ -4,6 +4,6 @@
 /cloud-archive-password.txt
 /lock
 /nginx-tmp/
-/static-deploy/
+/static-production/
 /static-tmp/
 /venv/

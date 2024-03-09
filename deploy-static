@@ -16,9 +16,9 @@ fi
 remote=root@matrix.grapheneos.org
 
 # use last modified timestamps from matrix.grapheneos.org
-rsync -rptcv --chmod=D755,F644 --delete --fsync --preallocate $remote:/srv/element.grapheneos.org/ static-deploy
-rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-tmp/ static-deploy
-for f in static-deploy/**.*(br|gz); do
+rsync -rptcv --chmod=D755,F644 --delete --fsync --preallocate $remote:/srv/element.grapheneos.org/ static-production
+rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-tmp/ static-production
+for f in static-production/**.*(br|gz); do
     touch -r "${f%.*}" "$f"
 done
 
@@ -35,7 +35,7 @@ echo target is $target
 echo
 
 ssh $remote "rm -rf $target && cp -a $active $target"
-rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-deploy/ $remote:$target
+rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-production/ $remote:$target
 ssh $remote "ln -snf $target /srv/element.grapheneos.org && sync /srv/element.grapheneos.org"
 
 echo "root $target;" > nginx-tmp/root_element.grapheneos.org.conf
