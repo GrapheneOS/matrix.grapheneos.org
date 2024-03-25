@@ -35,7 +35,7 @@ echo target is $target
 echo
 
 ssh $remote "rm -rf $target && cp -a $active $target"
-rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate static-production/ $remote:$target
+rsync -rptcv --chmod=D755,F644 --delete --fsync --preallocate static-production/ $remote:$target
 ssh $remote "ln -snf $target /srv/element.grapheneos.org && sync /srv/element.grapheneos.org"
 
 echo "root $target;" > nginx-tmp/root_element.grapheneos.org.conf
