@@ -9,15 +9,14 @@
     "disable_guests": true,
     "disable_login_language_selector": false,
     "disable_3pid_login": true,
+    "force_verification": false,
     "brand": "Element",
     "integrations_ui_url": "",
     "integrations_rest_url": "",
     "integrations_widgets_urls": [],
     "default_country_code": "GB",
     "show_labs_settings": false,
-    "features": {
-        "feature_pinning": true
-    },
+    "features": {},
     "default_federate": true,
     "default_theme": "dark",
     "room_directory": {
