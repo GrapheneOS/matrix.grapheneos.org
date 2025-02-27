@@ -8,6 +8,8 @@ Environment=NODE_ENV=production
 ExecStart=/usr/bin/node /opt/mjolnir/lib/index.js
 IPAddressDeny=any
 IPAddressAllow=localhost
+IPAddressAllow=51.79.51.42
+IPAddressAllow=2607:5300:205:200::26e1
 LockPersonality=true
 NoNewPrivileges=true
 PrivateDevices=true
