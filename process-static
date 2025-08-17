@@ -20,7 +20,7 @@ fi
 rm -rf nginx-tmp
 cp -a nginx nginx-tmp
 
-gixy nginx-tmp/nginx.conf
+gixy --add-header-redefinition-headers x-frame-options,x-content-type-options,x-xss-protection,content-security-policy,cache-control nginx-tmp/nginx.conf
 
 rm -rf static-tmp
 cp -a /usr/share/webapps/element static-tmp
