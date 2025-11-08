@@ -1,0 +1,8 @@
+/var/log/synapse/synapse.log {
+    missingok
+    maxsize 1G
+    nodelaycompress
+    postrotate
+        syslog-ng-ctl reopen >/dev/null
+    endscript
+}
