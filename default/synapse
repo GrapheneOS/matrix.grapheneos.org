@@ -1,2 +1,3 @@
 LD_PRELOAD=/usr/lib/libjemalloc.so
 PYTHONMALLOC=malloc
+PYTHONPATH=/opt/mjolnir/synapse_antispam
