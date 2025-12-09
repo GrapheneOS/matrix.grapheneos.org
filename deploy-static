@@ -45,7 +45,8 @@ ssh $remote nginx -s reload
 echo
 echo active is now $target
 
-ssh $remote 'usermod -aG io_uring postgres && usermod -aG synapse http'
+rsync -pcv --chmod=F644 --fsync --preallocate valkey/valkey.conf $remote:/etc/valkey/valkey.conf
+ssh $remote 'usermod -aG io_uring postgres && usermod -aG synapse http && usermod -aG valkey synapse'
 
 rsync -pcv --chmod=644 --fsync --preallocate syslog-ng/conf.d/synapse.conf $remote:/etc/syslog-ng/conf.d/synapse.conf
 ssh $remote syslog-ng-ctl reload
