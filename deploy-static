@@ -52,6 +52,7 @@ rsync -pcv --chmod=644 --fsync --preallocate syslog-ng/conf.d/synapse.conf $remo
 ssh $remote syslog-ng-ctl reload
 rsync -pcv --chmod=644 --fsync --preallocate logrotate.d/synapse $remote:/etc/logrotate.d/synapse
 rsync -pcv --chmod=644 --fsync --preallocate synapse/log_config.yaml $remote:/etc/synapse/log_config.yaml
+rsync -rpcv --chmod=D755,F644 --delete synapse/workers/ $remote:/etc/synapse/workers/
 
 rsync -pcv --chmod=755 --fsync --preallocate remote-backup $remote:/usr/local/bin/
 rsync -pcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.timer $remote:/etc/systemd/system/remote-backup.timer

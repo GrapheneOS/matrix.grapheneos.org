@@ -1,0 +1,11 @@
+worker_app: synapse.app.generic_worker
+worker_name: federation_sender1
+
+worker_listeners:
+  - path: /run/synapse/federation_sender1_replication.sock
+    mode: 432
+    type: http
+    resources:
+      - names: [replication]
+
+worker_log_config: /etc/synapse/workers/federation_sender1_log_config.yaml
