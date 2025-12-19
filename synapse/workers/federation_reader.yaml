@@ -1,0 +1,11 @@
+worker_app: synapse.app.generic_worker
+worker_name: federation_reader
+
+worker_listeners:
+  - path: /run/synapse/federation_reader_public.sock
+    mode: 432
+    type: http
+    resources:
+      - names: [federation]
+
+worker_log_config: /etc/synapse/workers/federation_reader_log_config.yaml
