@@ -3,7 +3,7 @@ worker_name: client_reader
 
 worker_listeners:
   - path: /run/synapse/client_reader_public.sock
-    mode: 432
+    mode: 0660
     type: http
     resources:
       - names: [client]

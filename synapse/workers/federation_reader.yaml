@@ -3,7 +3,7 @@ worker_name: federation_reader
 
 worker_listeners:
   - path: /run/synapse/federation_reader_public.sock
-    mode: 432
+    mode: 0660
     type: http
     resources:
       - names: [federation]

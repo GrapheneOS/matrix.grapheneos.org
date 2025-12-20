@@ -3,7 +3,7 @@ worker_name: media_repository
 
 worker_listeners:
   - path: /run/synapse/media_repository_public.sock
-    mode: 432
+    mode: 0660
     type: http
     resources:
       - names: [media]
