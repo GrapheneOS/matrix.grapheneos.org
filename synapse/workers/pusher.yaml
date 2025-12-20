@@ -1,0 +1,4 @@
+worker_app: synapse.app.generic_worker
+worker_name: pusher
+
+worker_log_config: /etc/synapse/workers/pusher_log_config.yaml
