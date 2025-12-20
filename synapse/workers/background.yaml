@@ -1,0 +1,4 @@
+worker_app: synapse.app.generic_worker
+worker_name: background
+
+worker_log_config: /etc/synapse/workers/background_log_config.yaml
