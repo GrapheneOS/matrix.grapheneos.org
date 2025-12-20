@@ -1,0 +1,16 @@
+worker_app: synapse.app.generic_worker
+worker_name: stream_writer
+
+worker_listeners:
+  - path: /run/synapse/stream_writer_public.sock
+    mode: 0660
+    type: http
+    resources:
+      - names: [client]
+  - path: /run/synapse/stream_writer_replication.sock
+    mode: 0600
+    type: http
+    resources:
+      - names: [replication]
+
+worker_log_config: /etc/synapse/workers/stream_writer_log_config.yaml
