@@ -1,0 +1,11 @@
+worker_app: synapse.app.generic_worker
+worker_name: client_reader
+
+worker_listeners:
+  - path: /run/synapse/client_reader_public.sock
+    mode: 432
+    type: http
+    resources:
+      - names: [client]
+
+worker_log_config: /etc/synapse/workers/client_reader_log_config.yaml

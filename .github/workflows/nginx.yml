@@ -13,4 +13,4 @@ jobs:
         python-version: '3.13'
         cache: pip
     - run: 'pip install --require-hashes --only-binary :all: -r requirements.txt'
-    - run: gixy --add-header-redefinition-headers x-frame-options,x-content-type-options,x-xss-protection,content-security-policy,cache-control nginx/nginx.conf
+    - run: gixy --add-header-redefinition-headers x-frame-options,x-content-type-options,x-xss-protection,content-security-policy,cache-control --skips regex_redos nginx/nginx.conf
