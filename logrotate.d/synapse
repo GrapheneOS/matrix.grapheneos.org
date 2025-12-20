@@ -1,4 +1,4 @@
-/var/log/synapse/main.log /var/log/synapse/federation_reader.log /var/log/synapse/federation_sender1.log /var/log/synapse/federation_sender2.log /var/log/synapse/federation_sender3.log /var/log/synapse/federation_sender4.log {
+/var/log/synapse/main.log /var/log/synapse/federation_reader.log /var/log/synapse/federation_sender1.log /var/log/synapse/federation_sender2.log /var/log/synapse/federation_sender3.log /var/log/synapse/federation_sender4.log /var/log/synapse/media_repository.log {
     missingok
     maxsize 1G
     nodelaycompress

@@ -1,0 +1,11 @@
+worker_app: synapse.app.media_repository
+worker_name: media_repository
+
+worker_listeners:
+  - path: /run/synapse/media_repository_public.sock
+    mode: 432
+    type: http
+    resources:
+      - names: [media]
+
+worker_log_config: /etc/synapse/workers/media_repository_log_config.yaml
