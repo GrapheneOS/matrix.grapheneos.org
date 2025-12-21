@@ -1,6 +1,6 @@
 [Unit]
 Description=mjolnir bot
-After=synapse.service
+After=synapse.target
 
 [Service]
 CapabilityBoundingSet=
