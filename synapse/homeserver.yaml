@@ -1,0 +1,153 @@
+modules:
+  - module: mjolnir.Module
+    config:
+      block_invites: true
+      ban_lists:
+        - "!WoQgyUIOTcwfyOuZGY:grapheneos.org"
+
+server_name: grapheneos.org
+web_client_location: https://element.grapheneos.org/
+public_baseurl: https://matrix.grapheneos.org/
+admin_contact: 'mailto:webmaster@grapheneos.org'
+
+registration_shared_secret_path: /etc/synapse/grapheneos.org.registration.shared.secret
+macaroon_secret_key_path: /etc/synapse/grapheneos.org.macaroon.secret.key
+form_secret_path: /etc/synapse/grapheneos.org.form.secret
+signing_key_path: /etc/synapse/grapheneos.org.signing.key
+
+federation_client_minimum_tls_version: 1.2
+
+presence:
+  enabled: false
+
+listeners:
+  - path: /run/synapse/main_public.sock
+    mode: 0660
+    type: http
+    resources:
+      - names: [client, federation]
+  - path: /run/synapse/main_replication.sock
+    mode: 0600
+    type: http
+    resources:
+      - names: [replication]
+
+instance_map:
+  main:
+    path: /run/synapse/main_replication.sock
+  stream_writer:
+    path: /run/synapse/stream_writer_replication.sock
+
+run_background_tasks_on: background
+
+federation_sender_instances:
+  - federation_sender1
+  - federation_sender2
+  - federation_sender3
+  - federation_sender4
+
+enable_media_repo: false
+
+pusher_instances:
+  - pusher
+
+stream_writers:
+  events:
+    - stream_writer
+  typing:
+    - stream_writer
+  to_device:
+    - stream_writer
+  account_data:
+    - stream_writer
+  receipts:
+    - stream_writer
+  presence:
+    - stream_writer
+  push_rules:
+    - stream_writer
+  device_lists:
+    - stream_writer
+
+redis:
+  enabled: true
+  path: /run/valkey/valkey.sock
+
+database:
+  name: psycopg2
+  args:
+    user: synapse
+    database: synapse
+    cp_min: 10
+    cp_max: 10
+
+caches:
+  global_factor: 1.0
+  cache_autotuning:
+    max_cache_memory_usage: 1024M
+    target_cache_memory_usage: 768M
+    min_cache_ttl: 5m
+
+max_upload_size: 100M
+media_store_path: /var/lib/synapse/media_store
+media_retention:
+  local_media_lifetime: 365d
+  remote_media_lifetime: 2d
+
+log_config: /etc/synapse/log_config.yaml
+
+trusted_key_servers:
+  - server_name: "matrix.org"
+suppress_key_server_warning: true
+
+default_room_version: "12"
+
+experimental_features:
+  # allow moderators to view redacted events
+  msc2815_enabled: true
+
+allow_public_rooms_without_auth: true
+allow_public_rooms_over_federation: true
+
+user_directory:
+  prefer_local_users: true
+
+limit_remote_rooms:
+  enabled: true
+  complexity: 50.0
+  complexity_error: "This room is above complexity 50.0 and joining is forbidden to prevent denial of service."
+
+max_avatar_size: 10M
+allowed_avatar_mimetypes: ["image/png", "image/jpeg", "image/gif"]
+
+redaction_retention_period: 90d
+forgotten_room_retention_period: 28d
+user_ips_max_age: 28d
+delete_stale_devices_after: 1y
+
+password_config:
+  policy:
+    enabled: true
+    minimum_length: 16
+
+alias_creation_rules:
+  - user_id: "@admin:grapheneos.org"
+    alias: "*"
+    room_id: "*"
+    action: allow
+  - user_id: "@grapheneos:grapheneos.org"
+    alias: "*"
+    room_id: "*"
+    action: allow
+
+room_list_publication_rules:
+  - user_id: "@admin:grapheneos.org"
+    alias: "*"
+    room_id: "*"
+    action: allow
+  - user_id: "@grapheneos:grapheneos.org"
+    alias: "*"
+    room_id: "*"
+    action: allow
+
+report_stats: false
