@@ -69,6 +69,8 @@ stream_writers:
   device_lists:
     - stream_writer
 
+update_user_directory_from_worker: user_dir
+
 redis:
   enabled: true
   path: /run/valkey/valkey.sock

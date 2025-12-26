@@ -1,0 +1,11 @@
+worker_app: synapse.app.generic_worker
+worker_name: user_dir
+
+worker_listeners:
+  - path: /run/synapse/user_dir_public.sock
+    mode: 0660
+    type: http
+    resources:
+      - names: [client]
+
+worker_log_config: /etc/synapse/workers/user_dir_log_config.yaml
