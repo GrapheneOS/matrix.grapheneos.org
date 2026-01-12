@@ -35,6 +35,8 @@ listeners:
 instance_map:
   main:
     path: /run/synapse/main_replication.sock
+  events_writer:
+    path: /run/synapse/events_writer_replication.sock
   stream_writer:
     path: /run/synapse/stream_writer_replication.sock
 
@@ -53,7 +55,7 @@ pusher_instances:
 
 stream_writers:
   events:
-    - stream_writer
+    - events_writer
   typing:
     - stream_writer
   to_device:

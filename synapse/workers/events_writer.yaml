@@ -1,0 +1,11 @@
+worker_app: synapse.app.generic_worker
+worker_name: events_writer
+
+worker_listeners:
+  - path: /run/synapse/events_writer_replication.sock
+    mode: 0600
+    type: http
+    resources:
+      - names: [replication]
+
+worker_log_config: /etc/synapse/workers/events_writer_log_config.yaml
