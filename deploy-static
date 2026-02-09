@@ -39,7 +39,7 @@ rsync -rptcv --chmod=D755,F644 --delete --fsync --preallocate static-production/
 ssh $remote "ln -snf $target /srv/element.grapheneos.org && sync /srv/element.grapheneos.org"
 
 echo "root $target;" > nginx-tmp/root_element.grapheneos.org.conf
-rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate nginx-tmp/{nginx.conf,mime.types,root_element.grapheneos.org.conf,snippets} $remote:/etc/nginx/
+rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate nginx-tmp/{nginx.conf,mime.types,root_element.grapheneos.org.conf,security-headers.conf} $remote:/etc/nginx/
 ssh $remote systemctl reload nginx
 
 echo
