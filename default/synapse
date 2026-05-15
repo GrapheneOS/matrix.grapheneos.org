@@ -1,4 +1,5 @@
 LD_PRELOAD=/usr/lib/libjemalloc.so
+MALLOC_CONF=background_thread:true
 PYTHONMALLOC=malloc
 
 PYTHONPATH=/opt/mjolnir/synapse_antispam
