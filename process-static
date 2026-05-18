@@ -26,5 +26,5 @@ rm -rf static-tmp
 cp -a /usr/share/webapps/element static-tmp
 cp --remove-destination webapps/element/config.json static-tmp/config.json
 
-find static-tmp -regex '.+\.\(css\|html\|ico\|js\|json\|map\|svg\|txt\|wasm\|xml\)' |
+find static-tmp -regex '.+\.\(css\|gif\|html\|ico\|js\|json\|map\|svg\|tflite\|txt\|wasm\|xml\)' -o -name apple-app-site-association |
     parallel -q ::: brotli zopfli :::: -
