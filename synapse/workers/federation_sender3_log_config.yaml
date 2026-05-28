@@ -14,7 +14,7 @@ handlers:
         class: logging.handlers.SysLogHandler
         formatter: syslog_fmt
         filters: [context]
-        address: /run/synapse-federation_sender3-log
+        address: /run/syslog/synapse-federation_sender3
 
 root:
     level: INFO

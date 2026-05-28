@@ -14,7 +14,7 @@ handlers:
         class: logging.handlers.SysLogHandler
         formatter: syslog_fmt
         filters: [context]
-        address: /run/synapse-background-log
+        address: /run/syslog/synapse-background
 
 root:
     level: INFO
