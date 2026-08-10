@@ -1,11 +1,11 @@
 [Unit]
-Description=mjolnir bot
+Description=Draupnir
 After=synapse.target
 
 [Service]
 CapabilityBoundingSet=
 Environment=NODE_ENV=production
-ExecStart=/usr/bin/node /opt/mjolnir/lib/index.js
+ExecStart=/opt/draupnir/draupnir-entrypoint.sh bot --draupnir-config /var/lib/draupnir/config/production.yaml
 IPAddressDeny=any
 IPAddressAllow=localhost
 IPAddressAllow=152.53.39.88
@@ -26,7 +26,7 @@ ProtectKernelModules=yes
 ProtectKernelTunables=yes
 ProtectProc=invisible
 ProtectSystem=strict
-ReadWritePaths=/var/lib/mjolnir
+ReadWritePaths=/var/lib/draupnir
 RemoveIPC=yes
 Restart=always
 RestartMaxDelaySec=10s
@@ -40,8 +40,8 @@ SystemCallArchitectures=native
 SystemCallFilter=@pkey @system-service
 SystemCallFilter=~@keyring @privileged @resources
 UMask=0077
-User=mjolnir
-WorkingDirectory=/var/lib/mjolnir
+User=draupnir
+WorkingDirectory=/var/lib/draupnir
 
 [Install]
 WantedBy=multi-user.target

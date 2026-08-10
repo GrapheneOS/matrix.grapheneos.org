@@ -59,7 +59,7 @@ rsync -rpcv --chmod=D755,F644 --delete synapse/workers/ $remote:/etc/synapse/wor
 rsync -pcv --chmod=755 --fsync --preallocate remote-backup $remote:/usr/local/bin/
 rsync -pcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.timer $remote:/etc/systemd/system/remote-backup.timer
 rsync -pcv --chmod=644 --fsync --preallocate systemd/system/remote-backup.service $remote:/etc/systemd/system/remote-backup.service
-rsync -pcv --chmod=644 --fsync --preallocate systemd/system/mjolnir.service $remote:/etc/systemd/system/mjolnir.service
+rsync -pcv --chmod=644 --fsync --preallocate systemd/system/draupnir.service $remote:/etc/systemd/system/draupnir.service
 rsync -rpcv --chmod=D755,F644 --delete --fsync --preallocate systemd/system/{postgresql,synapse,synapse-worker@,valkey}.service.d $remote:/etc/systemd/system/
 ssh $remote systemctl daemon-reload
 rsync -pcv --chmod=644 --fsync --preallocate backup-public-key.txt cloud-archive.sh $remote:
