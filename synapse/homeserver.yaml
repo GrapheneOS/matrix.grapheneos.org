@@ -30,6 +30,8 @@ instance_map:
     path: /run/synapse/main_replication.sock
   events_writer:
     path: /run/synapse/events_writer_replication.sock
+  media_repository:
+    path: /run/synapse/media_repository_replication.sock
   stream_writer:
     path: /run/synapse/stream_writer_replication.sock
 
@@ -63,6 +65,8 @@ stream_writers:
     - stream_writer
   device_lists:
     - stream_writer
+  quarantined_media_changes:
+    - media_repository
 
 update_user_directory_from_worker: user_dir
 

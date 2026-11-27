@@ -7,5 +7,10 @@ worker_listeners:
     type: http
     resources:
       - names: [media]
+  - path: /run/synapse/media_repository_replication.sock
+    mode: 0600
+    type: http
+    resources:
+      - names: [replication]
 
 worker_log_config: /etc/synapse/workers/media_repository_log_config.yaml
